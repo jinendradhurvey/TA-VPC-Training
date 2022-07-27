@@ -15,5 +15,11 @@ variable "cidr_private" {
  }
 
 variable "cidr_data" {
-   description = "This is the CIDR of the data subnet"
+  type = map
+  description = "This is the CIDR of the data subnet"
+ }
+
+ variable "region" {
+   description = "This is the AZ of the data subnet"
+   type = string
  }

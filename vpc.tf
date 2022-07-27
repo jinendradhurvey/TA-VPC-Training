@@ -1,4 +1,4 @@
-resource"aws_vpc" "lap_vpc" {
+resource"aws_vpc" "lab_vpc" {
     cidr_block = var.vpc_cidr
 
     tags = {

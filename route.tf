@@ -1,5 +1,5 @@
 resource "aws_route_table" "internet_route_table" {
-  vpc_id = aws_vpc.lap_vpc.id
+  vpc_id = aws_vpc.lab_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -12,7 +12,7 @@ resource "aws_route_table" "internet_route_table" {
 }
 
 resource "aws_route_table" "nat_route_table" {
-  vpc_id = aws_vpc.lap_vpc.id
+  vpc_id = aws_vpc.lab_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -35,6 +35,8 @@ resource "aws_route_table_association" "private" {
 }
 
 resource "aws_route_table_association" "data" {
-  subnet_id      = aws_subnet.data.id
+  for_each       = aws_subnet.data
+
+  subnet_id      = each.value.id
   route_table_id = aws_route_table.nat_route_table.id
 }
